@@ -1,0 +1,73 @@
+
+--------------------------------------------------
+깃허브에 등록
+  - 주소
+    https://github.com/s-jinipark/spring-petclinic.git
+    
+  - 참조
+	[GitHub] 깃허브에 프로젝트 올리기
+	https://soda-dev.tistory.com/12
+	
+	2.6 Git의 기초 - 태그
+	https://git-scm.com/book/ko/v2/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%ED%83%9C%EA%B7%B8
+	
+
+--------------------------------------------------
+스카우터 적용
+  - 에이전트 설치
+    D:\dev\BIN\scouter-2.17\agent.java
+    
+  - 설정 파일
+    scouter.conf
+    
+  - sts 에 설정
+    Open Config 에 설정 > Arguments > VM Arguments 에다가 ...
+    -javaagent:D:/dev/BIN/scouter-2.17/agent.java/scouter.agent.jar 
+    -Dscouter.config=D:/dev/BIN/scouter-2.17/agent.java/conf/scouter.conf
+
+  - 문제
+    X-view 에 점이 안 찍혀서
+    hook_method_patterns=com.example.demo.*.*,org.springframework.samples.petclinic.*.*
+    를 넣어 줌
+    
+
+--------------------------------------------------
+mysql 로 변경
+  - 간단하게 docker 에 ..
+    docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=root -d -p 3306:3306 mysql:latest
+    
+  - 참조
+    https://poiemaweb.com/docker-mysql
+    
+  - 이것 저거 하다가 이걸로
+    출처: https://technote.kr/32 [TechNote.kr:티스토리]
+    
+		mysql> create user 'petclinic'@'%' identified by 'petclinic';
+		Query OK, 0 rows affected (0.01 sec)
+		
+		mysql> grant all privileges on petclinic.* to petclinic@'%';
+		Query OK, 0 rows affected (0.01 sec)
+		
+		mysql>
+		mysql> select user, host from user;
+		+------------------+-----------+
+		| user             | host      |
+		+------------------+-----------+
+		| petclinic        | %         |
+		| root             | %         |
+		| mysql.infoschema | localhost |
+		| mysql.session    | localhost |
+		| mysql.sys        | localhost |
+		| root             | localhost |
+		+------------------+-----------+
+		6 rows in set (0.00 sec)
+		  
+  - 설정 변경
+    application.properties 에 
+		database=mysql
+		spring.profiles.active=mysql
+    추가
+    
+  
+    
+    
