@@ -68,6 +68,24 @@ mysql 로 변경
 		spring.profiles.active=mysql
     추가
     
-  
-    
+--------------------------------------------------
+태깅 추가
+ 
+	jinipark@P00073763-007 MINGW64 /d/dev/workspaces/sts-4.21.0/spring-petclinic (main)
+	$ git tag -a v1.1 -m "my version 1.1"
+	
+	jinipark@P00073763-007 MINGW64 /d/dev/workspaces/sts-4.21.0/spring-petclinic (main)
+	$ git tag
+	v1.0
+	v1.1
+	
+	jinipark@P00073763-007 MINGW64 /d/dev/workspaces/sts-4.21.0/spring-petclinic (main)
+	$ git push origin v1.1
+	Enumerating objects: 1, done.
+	Counting objects: 100% (1/1), done.
+	Writing objects: 100% (1/1), 233 bytes | 233.00 KiB/s, done.
+	Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+	To https://github.com/s-jinipark/spring-petclinic.git
+	 * [new tag]         v1.1 -> v1.1
+
     
